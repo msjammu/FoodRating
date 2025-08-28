@@ -1,0 +1,68 @@
+name: SWE-agent (run on an issue)
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_url:
+        description: "Full GitHub issue URL (e.g. https://github.com/msjammu/FoodRating/issues/1)"
+        required: true
+      model_name:
+        description: "Model (e.g. claude-sonnet-4-20250514 or gpt-4o)"
+        required: false
+        default: "claude-sonnet-4-20250514"
+      cost_limit:
+        description: "Max $ cost per run (e.g. 2.00)"
+        required: false
+        default: "2.00"
+
+jobs:
+  run-swe-agent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      # Keys come from repo secrets (see section 2)
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GITHUB_TOKEN: ${{ secrets.SWE_AGENT_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install SWE-agent from source
+        run: |
+          git clone https://github.com/SWE-agent/SWE-agent.git
+          cd SWE-agent
+          python -m pip install --upgrade pip
+          pip install --editable .
+
+      - name: Run SWE-agent on the issue
+        run: |
+          # Build the repo + issue URLs for SWE-agent
+          REPO_URL="https://github.com/${{ github.repository }}"
+          ISSUE_URL="${{ github.event.inputs.issue_url }}"
+          MODEL="${{ github.event.inputs.model_name }}"
+          COST="${{ github.event.inputs.cost_limit }}"
+
+          # Basic run: agent plans, edits, runs tests, and opens a PR
+          sweagent run \
+            --agent.model.name="$MODEL" \
+            --agent.model.per_instance_cost_limit="$COST" \
+            --env.repo.github_url="$REPO_URL" \
+            --problem_statement.github_url="$ISSUE_URL" \
+            --output_dir "./sweagent_output"
+
+      - name: Upload trajectory & logs (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sweagent_output
+          path: sweagent_output
