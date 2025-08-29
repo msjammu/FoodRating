@@ -1,49 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FoodRatings</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FoodRatings • Learning Hub</title>
+  <meta name="description" content="Curated articles and videos to learn how to build the FoodRatings app with AI and SWE agents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 50px;
+    :root {
+      --bg: #0b0d12; /* deep slate */
+      --panel: #111520; /* card bg */
+      --panel-2: #0e121a; /* header/footer */
+      --text: #e6eaf2; /* primary text */
+      --muted: #9aa3b2;
+      --brand: #7c9cff; /* soft indigo */
+      --accent: #55d6be; /* mint */
+      --ring: rgba(124, 156, 255, 0.35);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35), 0 2px 6px rgba(124,156,255,0.15);
     }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     header {
-      background-color: #ff7043;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
+      background: radial-gradient(1200px 400px at 20% -10%, rgba(124,156,255,0.25), transparent),
+                  radial-gradient(800px 300px at 90% 0%, rgba(85,214,190,0.22), transparent), var(--panel-2);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    h1 {
-      margin: 0;
-    }
-    p {
-      font-size: 1.2em;
-      color: #333;
-    }
-    footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #666;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 28px 18px; }
+    .title { font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; letter-spacing: -0.02em; margin: 8px 0 6px; }
+    .subtitle { color: var(--muted); margin: 0 0 18px; }
+    .toolbar { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; margin-top: 18px; }
+    .search { display: flex; gap: 10px; background: var(--panel); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 10px 12px; box-shadow: var(--shadow); }
+    .search input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 15px; }
+    .tabs { display: inline-flex; background: var(--panel); border: 1px solid rgba(255,255,255,0.07); border-radius: 999px; padding: 4px; box-shadow: var(--shadow); }
+    .tab { cursor: pointer; border: none; background: transparent; color: var(--muted); padding: 8px 14px; border-radius: 999px; font-weight: 600; }
+    .tab.active { background: #1a2233; color: var(--text); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 22px; }
+    .card { grid-column: span 12; background: var(--panel); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 16px; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--shadow); }
+    .thumb { width: 180px; height: 110px; border-radius: 12px; background: #0a0d14; object-fit: cover; border: 1px solid rgba(255,255,255,0.06); flex: 0 0 auto; }
+    .content { flex: 1; min-width: 0; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: #101827; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+    .title-sm { font-size: 18px; margin: 8px 0 6px; line-height: 1.35; }
+    .meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.1); background: linear-gradient(180deg, #1a2233, #121826); color: var(--text); padding: 8px 12px; border-radius: 12px; cursor: pointer; font-weight: 600; }
+    .btn:hover { box-shadow: 0 0 0 3px var(--ring); }
+
+    .embed { display: none; grid-column: span 12; background: var(--panel); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); overflow: hidden; }
+    .embed iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
+
+    footer { margin-top: 40px; padding: 24px 18px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); background: var(--panel-2); }
+
+    @media (min-width: 640px) { .card { grid-column: span 6; } }
+    @media (min-width: 1024px) { .card { grid-column: span 4; } }
   </style>
 </head>
 <body>
   <header>
-    <h1>🍽️ FoodRatings</h1>
+    <div class="container">
+      <div class="badge">🍽️ FoodRatings • Learning Hub</div>
+      <h1 class="title">Build the FoodRatings App</h1>
+      <p class="subtitle">Curated articles and videos on AI product design, SWE agents, data, and shipping to production.</p>
+      <div class="toolbar">
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 15.5L21 21" stroke="#7c9cff" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#7c9cff" stroke-width="2"/></svg>
+          <input id="search" placeholder="Search topics, authors, channels…" />
+        </div>
+        <div class="tabs" role="tablist" aria-label="Filter resources">
+          <button class="tab active" data-type="all" role="tab" aria-selected="true">All</button>
+          <button class="tab" data-type="article" role="tab" aria-selected="false">Articles</button>
+          <button class="tab" data-type="video" role="tab" aria-selected="false">YouTube</button>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <p>Welcome to the FoodRatings App! 🚀</p>
-    <p>Rate, review, and improve dining experiences everywhere.</p>
+  <main class="container">
+    <div id="grid" class="grid" aria-live="polite"></div>
+
+    <!-- Hidden video embed container (toggled when user clicks "Watch") -->
+    <div id="embed" class="embed"></div>
   </main>
 
   <footer>
+    <div class="container">
+      <strong>Contribute:</strong> Edit <code>index.html</code> and add to the <code>RESOURCES</code> array below. Commit to the <code>main</code> branch and GitHub Pages will update automatically. ✨
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * 👉 Add your resources here. Minimal fields keep it easy to edit in GitHub.
+     * type: 'article' | 'video'
+     * tags: array of strings (used by search)
+     * For videos, use a YouTube ID (privacy-friendly embed is used).
+     */
+    const RESOURCES = [
+      {
+        type: 'article',
+        title: 'Designing an AI-first Product: Patterns that Work',
+        url: 'https://example.com/ai-first-product-patterns',
+        author: 'Your Name',
+        date: '2025-05-04',
+        image: 'https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=800&auto=format&fit=crop',
+        tags: ['ai', 'product', 'ux']
+      },
+      {
+        type: 'article',
+        title: 'Evaluating Food Quality Data Sources',
+        url: 'https://example.com/food-data-evaluation',
+        author: 'FoodRatings Team',
+        date: '2025-03-22',
+        image: 'https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=800&auto=format&fit=crop',
+        tags: ['data', 'food', 'quality']
+      },
+      {
+        type: 'video',
+        title: 'Introducing Open SWE: An Open-Source Asynchronous Coding Agent',
+        youtubeId: 'TaYVvXbOs8c', // replace with your real video ID
+        channel: 'FoodRatings Dev',
+        date: '2025-06-10',
+        image: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
+        tags: ['agents', 'backend', 'orchestration']
+      },
+      {
+        type: 'video',
+        title: 'YouTube Data API for Content Curation',
+        youtubeId: '9bZkp7q19f0',
+        channel: 'APIs Lab',
+        date: '2025-01-14',
+        image: 'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg',
+        tags: ['youtube', 'api', 'automation']
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+    const searchInput = document.getElementById('search');
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const embed = document.getElementById('embed');
+
+    let state = { q: '', filter: 'all' };
+
+    function fmtDate(iso) {
+      try { return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); } catch(e) { return iso; }
+    }
+
+    function itemHTML(r, i) {
+      const isVideo = r.type === 'video';
+      const left = `<img class="thumb" src="${r.image || (isVideo ? `https://i.ytimg.com/vi/${r.youtubeId}/hqdefault.jpg` : '')}" alt="${r.title}">`;
+      const byline = isVideo ? `YouTube • ${r.channel || 'Channel'}` : (r.author || '—');
+      const meta = `${byline} • ${r.date ? fmtDate(r.date) : ''}`;
+      const action = isVideo
+        ? `<button class="btn" onclick="play('${r.youtubeId}')" aria-controls="embed">▶ Watch</button>`
+        : `<a class="btn" href="${r.url}" target="_blank" rel="noopener">↗ Read</a>`;
+
+      return `
+        <article class="card" data-index="${i}" data-type="${r.type}" data-tags="${(r.tags||[]).join(' ').toLowerCase()}">
+          ${left}
+          <div class="content">
+            <span class="badge">${r.type === 'video' ? 'YouTube' : 'Article'}</span>
+            <h3 class="title-sm">${r.title}</h3>
+            <div class="meta">${meta}</div>
+            <div class="actions">${action}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function render() {
+      const q = state.q.trim().toLowerCase();
+      const filter = state.filter;
+      const rows = RESOURCES
+        .filter(r => filter === 'all' || r.type === filter)
+        .filter(r => !q || [r.title, r.author, r.channel, (r.tags||[]).join(' ')].filter(Boolean).join(' ').toLowerCase().includes(q))
+        .sort((a,b) => new Date(b.date || '1970-01-01') - new Date(a.date || '1970-01-01'));
+      grid.innerHTML = rows.map(itemHTML).join('');
+      if (!rows.length) grid.innerHTML = `<p class="subtitle">No results. Try different keywords or clear filters.</p>`;
+    }
+
+    function play(youtubeId) {
+      embed.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId}" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      embed.style.display = 'block';
+      embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // interactions
+    searchInput.addEventListener('input', (e) => { state.q = e.target.value; render(); });
+    tabs.forEach(btn => btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active')); btn.classList.add('active');
+      state.filter = btn.dataset.type; render();
+      // Update aria-selected for accessibility
+      tabs.forEach(b => b.setAttribute('aria-selected', String(b === btn)));
+    }));
+
+    // initial paint
+    render();
+  </script>
+
+    <footer>
     <p>Made with ❤️ on GitHub Pages</p>
   </footer>
+
 </body>
 </html>
+
