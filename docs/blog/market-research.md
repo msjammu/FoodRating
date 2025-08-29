@@ -1,3 +1,5 @@
+Getting started with ChatGPT — I had some ideas in mind and used it to research. GPT helped me put together the rest.
+
 # FoodRatings Market Research Report
 
 ## Executive Summary
