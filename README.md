@@ -2,11 +2,6 @@
   <img src="assets/foodratings-logo-light.svg" alt="FoodRatings — Learn in Public" width="220" />
 </p>
 
-  
-## 📖 Blog
-- [Building FoodRatings with State-of-the-Art Tech](docs/blog/first-post.md)
-
-
 # 👋 Hi, there.  
 
 I’m building **[FoodRatings](https://github.com/msjammu/FoodRating)** — an app to rate food places (restaurants, canteens, hotels, etc.) and provide insights to owners and staff.  
@@ -37,6 +32,11 @@ I’ll be sharing my progress in:
 💡 *My goal: not just to build an app, but to build a resource for anyone learning modern full-stack dev.*  
 
 ---
+
+## 📖 Blog
+- [Building FoodRatings with State-of-the-Art Tech](docs/blog/first-post.md)
+- [FoodRatings Market Research Report](docs/blog/market-research.md)
+
 
 ## 🌟 Let’s Connect  
 - 🖥️ Follow the repo: [FoodRatings](https://github.com/msjammu/FoodRating)  
