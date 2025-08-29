@@ -1,0 +1,26 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" rx="48" fill="#ffffff"/>
+  <!-- plate -->
+  <g transform="translate(256,256)">
+    <circle r="150" fill="none" stroke="#0f172a" stroke-width="14" opacity="0.7"/>
+    <circle r="110" fill="none" stroke="#0f172a" stroke-width="6" opacity="0.5"/>
+    <!-- fork -->
+    <g transform="translate(-120,-120) rotate(35)">
+      <rect x="-12" y="-40" width="24" height="240" rx="12" fill="#0f172a" opacity="0.9"/>
+      <rect x="-40" y="-40" width="16" height="60" rx="4" fill="#0f172a" opacity="0.9"/>
+      <rect x="-8"  y="-40" width="16" height="60" rx="4" fill="#0f172a" opacity="0.9"/>
+      <rect x="24"  y="-40" width="16" height="60" rx="4" fill="#0f172a" opacity="0.9"/>
+    </g>
+    <!-- star -->
+    <g transform="translate(75, -30) scale(1.6)">
+      <polygon points="0,-18 5.3,-5.6 18, -5.6 7.6,2.1 11.1,14 0,7  -11.1,14 -7.6,2.1 -18,-5.6 -5.3,-5.6" 
+               fill="url(#acc)"/>
+    </g>
+  </g>
+</svg>
