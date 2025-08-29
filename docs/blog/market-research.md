@@ -1,6 +1,5 @@
-Getting started with ChatGPT — I had some ideas in mind and used it to research. GPT helped me put together the rest.
-
 # FoodRatings Market Research Report
+I had some product ideas in mind and used it to research. GPT helped me put together the rest.
 
 ## Executive Summary
 The food review and ratings industry is dominated by platforms like Google Reviews, Yelp, and TripAdvisor. While these platforms are successful in reach and monetization, they leave critical gaps around **hygiene, cleanliness, and operational improvement**. FoodRatings aims to disrupt this space by focusing on **structured cleanliness metrics, staff training, and actionable insights for restaurant owners**.
