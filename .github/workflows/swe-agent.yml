@@ -9,7 +9,7 @@ on:
       model_name:
         description: "Model (e.g. claude-sonnet-4-20250514 or gpt-4o)"
         required: false
-        default: "claude-sonnet-4-20250514"
+        default: "gpt-4o"
       cost_limit:
         description: "Max $ cost per run (e.g. 2.00)"
         required: false
