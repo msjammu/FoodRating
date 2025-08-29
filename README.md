@@ -1,8 +1,13 @@
+<p align="left">
+  <img src="assets/foodratings-logo-light.svg" alt="FoodRatings — Learn in Public" width="220" />
+</p>
+
+  
 ## 📖 Blog
 - [Building FoodRatings with State-of-the-Art Tech](docs/blog/first-post.md)
 
 
-# 👋 Hi, I’m @msjammu  
+# 👋 Hi, there.  
 
 I’m building **[FoodRatings](https://github.com/msjammu/FoodRating)** — an app to rate food places (restaurants, canteens, hotels, etc.) and provide insights to owners and staff.  
 
