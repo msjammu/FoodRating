@@ -71,7 +71,7 @@ FoodRatings uniquely positions in the **top-right quadrant**, addressing a white
 
 ## Positioning Map
 
-<img src="../Assets/positioningmap.png" alt="FoodRatings Positioning Map" width="500"/>
+<img src="../../Assets/positioningmap.png" alt="FoodRatings Positioning Map" width="500"/>
 
 
 ---
