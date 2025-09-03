@@ -36,6 +36,7 @@ I’ll be sharing my progress in:
 ## 📖 Blog
 - [Building FoodRatings with State-of-the-Art Tech](docs/blog/first-post.md)
 - [FoodRatings Market Research Report](docs/blog/market-research.md)
+- [Resources](docs/blog/resources.md)
 
 
 ## 🌟 Let’s Connect  
