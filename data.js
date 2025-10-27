@@ -12,7 +12,7 @@ const RESOURCES = [
     author: 'langchain',
     date: '2025-08-06',
     image: 'https://blog.langchain.com/content/images/size/w760/format/webp/2025/08/open-swe-diagram-1.png',
-    tags: ['ai', 'SWE Agent', 'Github']
+    tags: ['ai', 'swe-agent', 'github', 'langchain']
   },
   {
     type: 'article',
@@ -21,7 +21,7 @@ const RESOURCES = [
     source: 'IBM Think',
     date: '2024-05-10',
     image: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
-    tags: ['ai agents', 'ibm', 'article', 'think']
+    tags: ['ai-agents', 'ibm', 'guide']
   },
   {
     type: 'article',
@@ -30,7 +30,7 @@ const RESOURCES = [
     source: 'Exploring Language Models (Maarten Grootendorst)',
     date: '2025-03-17', // Based on the published date in the newsletter :contentReference[oaicite:0]{index=0}
     image: 'https://substackcdn.com/image/fetch/$s_!A_Oy!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc3177e12-432e-4e41-814f-6febf7a35f68_1360x972.png',
-    tags: ['llm agents', 'visual guide', 'single-agent', 'multi-agent', 'maarten grootendorst']
+    tags: ['llm-agents', 'visual-guide', 'single-agent', 'multi-agent']
   },      
   {
     type: 'article',
@@ -39,7 +39,7 @@ const RESOURCES = [
     source: 'GitHub Next',
     date: '2024-06-15', // approximate announcement date; update if you want exact
     image: 'https://githubnext.com/assets/images/next-octocat.svg',
-    tags: ['github', 'spark', 'ai apps', 'micro apps', 'no-code']
+    tags: ['github', 'ai-apps', 'micro-apps', 'no-code']
   },
   {
     type: 'video',
@@ -48,7 +48,7 @@ const RESOURCES = [
     channel: 'LangChain',
     date: '2025-06-10',
     image: 'https://i.ytimg.com/vi/TaYVvXbOs8c/hqdefault.jpg',
-    tags: ['agents', 'backend', 'orchestration', 'langchain', 'swe']
+    tags: ['swe-agent', 'backend', 'orchestration', 'langchain']
   },
   {
     "type": "video",
@@ -57,7 +57,7 @@ const RESOURCES = [
     "channel": "Kevin Stratvert",
     "date": "2024-11-15",
     "image": "https://i.ytimg.com/vi/dX9MJM5EokE/hqdefault.jpg",
-    "tags": ["copilot", "power platform", "microsoft 365", "ai agents", "low-code", "tutorial"]
+    "tags": ["copilot", "power-platform", "microsoft-365", "ai-agents", "low-code", "tutorial"]
   },
   {
     type: 'video',
@@ -66,7 +66,7 @@ const RESOURCES = [
     channel: 'OpenAI',
     date: '2025-07-17',
     image: 'https://i.ytimg.com/vi/1jn_RpbPbEc/hqdefault.jpg',
-    tags: ['chatgpt', 'agent', 'unified model', 'openai', 'sam altman']
+    tags: ['chatgpt', 'agent', 'unified-model', 'openai']
   },      
   {
     type: 'video',
@@ -75,7 +75,7 @@ const RESOURCES = [
     channel: 'Y Combinator',
     date: '2025-06-17',
     image: 'https://i.ytimg.com/vi/RNJCfif1dPY/hqdefault.jpg',
-    tags: ['andrew ng', 'ai', 'software engineering', 'startup school', 'san francisco']
+    tags: ['andrew-ng', 'ai', 'software-engineering', 'startup-school']
   },
   {
     type: 'video',
@@ -84,7 +84,7 @@ const RESOURCES = [
     channel: 'Jeff Su',
     date: '2023-11-20',
     image: 'https://i.ytimg.com/vi/FwOTs4UxQS4/hqdefault.jpg',
-    tags: ['ai agents', 'explanation', 'tutorial', 'jeff su']
+    tags: ['ai-agents', 'tutorial']
   },
   {
     type: 'video',
@@ -93,7 +93,7 @@ const RESOURCES = [
     channel: 'Sequoia Capital',
     date: '2023-06-22',
     image: 'https://i.ytimg.com/vi/sal78ACtGTc/hqdefault.jpg',
-    tags: ['andrew ng', 'agentic workflows', 'AI Fund', 'ai agents', 'sequoia capital']
+    tags: ['andrew-ng', 'agentic-workflows', 'ai-fund', 'ai-agents']
   },
   {
     type: 'video',
@@ -102,7 +102,7 @@ const RESOURCES = [
     channel: 'Stanford Online',
     date: '2023-09-12',
     image: 'https://i.ytimg.com/vi/5p248yoa3oE/hqdefault.jpg',
-    tags: ['andrew ng', 'ai opportunities', 'stanford', '2023']
+    tags: ['andrew-ng', 'ai-opportunities', 'stanford']
   },
   {
     type: 'video',
@@ -111,7 +111,7 @@ const RESOURCES = [
     channel: 'GitHub',
     date: '2024-10-30',
     image: 'https://i.ytimg.com/vi/dSf8QOjazrQ/hqdefault.jpg',
-    tags: ['github learning', 'github universe', 'ai code generation', 'keynote', '2024']
+    tags: ['github', 'github-universe', 'ai-code-generation', 'keynote']
   },
   {
     type: 'video',
@@ -120,6 +120,6 @@ const RESOURCES = [
     channel: 'GitHub',
     date: '2024-10-31',
     image: 'https://i.ytimg.com/vi/uh9A4LvuGHM/hqdefault.jpg',
-    tags: ['github learning', 'github universe', 'developers', 'keynote', '2024', 'day 2']
+    tags: ['github', 'github-universe', 'developers', 'keynote']
   }      
 ];
