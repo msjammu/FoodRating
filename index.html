@@ -125,19 +125,33 @@
       try { return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); } catch(e) { return iso; }
     }
 
-    function getAllTags() {
-      const allTags = new Set();
-      RESOURCES.forEach(r => {
+    function getAvailableTags() {
+      const q = state.q.trim().toLowerCase();
+      const filter = state.filter;
+      
+      // Get resources that match current search and content type filters (but not tag filters)
+      const visibleResources = RESOURCES
+        .filter(r => filter === 'all' || r.type === filter)
+        .filter(r => !q || [r.title, r.author, r.channel, (r.tags||[]).join(' ')].filter(Boolean).join(' ').toLowerCase().includes(q));
+      
+      // Collect tags from visible resources
+      const availableTags = new Set();
+      visibleResources.forEach(r => {
         if (r.tags) {
-          r.tags.forEach(tag => allTags.add(tag.toLowerCase()));
+          r.tags.forEach(tag => availableTags.add(tag.toLowerCase()));
         }
       });
-      return Array.from(allTags).sort();
+      
+      return Array.from(availableTags).sort();
     }
 
     function renderTagChips() {
-      const allTags = getAllTags();
-      tagChipsContainer.innerHTML = allTags.map(tag => 
+      const availableTags = getAvailableTags();
+      
+      // Remove any selected tags that are no longer available
+      state.selectedTags = state.selectedTags.filter(tag => availableTags.includes(tag));
+      
+      tagChipsContainer.innerHTML = availableTags.map(tag => 
         `<span class="tag-chip ${state.selectedTags.includes(tag) ? 'active' : ''}" 
                onclick="toggleTag('${tag}')">${tag}</span>`
       ).join('');
@@ -190,6 +204,9 @@
       const q = state.q.trim().toLowerCase();
       const filter = state.filter;
       const selectedTags = state.selectedTags;
+      
+      // Update available tags based on current search/filter
+      renderTagChips();
       
       const rows = RESOURCES
         .filter(r => filter === 'all' || r.type === filter)
