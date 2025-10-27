@@ -121,5 +121,32 @@ const RESOURCES = [
     date: '2024-10-31',
     image: 'https://i.ytimg.com/vi/uh9A4LvuGHM/hqdefault.jpg',
     tags: ['github', 'github-universe', 'developers', 'keynote']
+  },
+  {
+    type: 'video',
+    title: 'Every Perplexity AI Feature Explained in One Video',
+    youtubeId: 'LnURCxwsB34',
+    channel: 'Skill Leap AI',
+    date: '2025-10-27',
+    image: 'https://i.ytimg.com/vi/LnURCxwsB34/hqdefault.jpg',
+    tags: ['perplexity-ai', 'ai-search', 'research', 'tutorial', 'features']
+  },
+  {
+    type: 'video',
+    title: 'Python for Beginners - Learn Coding with Python in 1 Hour',
+    youtubeId: 'kqtD5dpn9C8',
+    channel: 'Programming with Mosh',
+    date: '2023-05-15',
+    image: 'https://i.ytimg.com/vi/kqtD5dpn9C8/hqdefault.jpg',
+    tags: ['python', 'programming', 'tutorial', 'beginner']
+  },
+  {
+    type: 'video',
+    title: 'Every Google Gemini Feature Explained in One Video',
+    youtubeId: '7HuXSoDXfTY',
+    channel: 'Skill Leap AI',
+    date: '2025-10-27',
+    image: 'https://i.ytimg.com/vi/7HuXSoDXfTY/hqdefault.jpg',
+    tags: ['google-gemini', 'ai-model', 'multimodal', 'google-ai', 'tutorial', 'features']
   }      
 ];
