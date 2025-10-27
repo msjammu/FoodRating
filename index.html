@@ -54,6 +54,19 @@
     .embed { display: none; grid-column: span 12; background: var(--panel); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); overflow: hidden; }
     .embed iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
 
+    .tag-filters { margin-top: 16px; }
+    .tag-filters h4 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag-chip { cursor: pointer; background: var(--panel); border: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; transition: all 0.2s; }
+    .tag-chip:hover { background: #1a2233; color: var(--text); }
+    .tag-chip.active { background: var(--brand); color: white; border-color: var(--brand); }
+    .clear-tags { cursor: pointer; background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--muted); padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .clear-tags:hover { background: var(--panel); }
+    
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .card-tag { background: rgba(124,156,255,0.1); color: var(--brand); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 500; cursor: pointer; }
+    .card-tag:hover { background: rgba(124,156,255,0.2); }
+
     footer { text-align: center; margin-top: 40px; padding: 24px 18px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); background: var(--panel-2); }
 
     @media (min-width: 640px) { .card { grid-column: span 6; } }
@@ -81,130 +94,69 @@
   </header>
 
   <main class="container">
+    <div class="tag-filters">
+      <h4>Filter by tags:</h4>
+      <div class="tag-list">
+        <span class="clear-tags" onclick="clearTagFilter()">Clear all</span>
+        <div id="tag-chips"></div>
+      </div>
+    </div>
+    
     <div id="grid" class="grid" aria-live="polite"></div>
 
     <!-- Hidden video embed container (toggled when user clicks "Watch") -->
     <div id="embed" class="embed"></div>
   </main>
 
+  <!-- Load the data from external file -->
+  <script src="data.js"></script>
+  
   <script>
-    /**
-     * 👉 Add your resources here. Minimal fields keep it easy to edit in GitHub.
-     * type: 'article' | 'video'
-     * tags: array of strings (used by search)
-     * For videos, use a YouTube ID (privacy-friendly embed is used).
-     */
-    const RESOURCES = [
-      {
-        type: 'article',
-        title: 'Introducing Open SWE: An Open-Source Asynchronous Coding Agent',
-        url: 'https://blog.langchain.com/introducing-open-swe-an-open-source-asynchronous-coding-agent/',
-        author: 'langchain',
-        date: '2025-08-06',
-        image: 'https://blog.langchain.com/content/images/size/w760/format/webp/2025/08/open-swe-diagram-1.png',
-        tags: ['ai', 'SWE Agent', 'Github']
-      },
-      {
-        type: 'article',
-        title: 'The 2025 Guide to AI Agents',
-        url: 'https://www.ibm.com/think/topics/ai-agents',
-        source: 'IBM Think',
-        date: '2024-05-10',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
-        tags: ['ai agents', 'ibm', 'article', 'think']
-      },
-      {
-        type: 'article',
-        title: 'A Visual Guide to LLM Agents',
-        url: 'https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-llm-agents',
-        source: 'Exploring Language Models (Maarten Grootendorst)',
-        date: '2025-03-17', // Based on the published date in the newsletter :contentReference[oaicite:0]{index=0}
-        image: 'https://substackcdn.com/image/fetch/$s_!A_Oy!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc3177e12-432e-4e41-814f-6febf7a35f68_1360x972.png',
-        tags: ['llm agents', 'visual guide', 'single-agent', 'multi-agent', 'maarten grootendorst']
-      },      
-      {
-        type: 'article',
-        title: 'GitHub Spark',
-        url: 'https://githubnext.com/projects/github-spark/',
-        source: 'GitHub Next',
-        date: '2024-06-15', // approximate announcement date; update if you want exact
-        image: 'https://githubnext.com/assets/images/next-octocat.svg',
-        tags: ['github', 'spark', 'ai apps', 'micro apps', 'no-code']
-      },
-      {
-        type: 'video',
-        title: 'Introducing Open SWE: An Open-Source Asynchronous Coding Agent',
-        youtubeId: 'TaYVvXbOs8c', // replace with your real video ID
-        channel: 'FoodRatings Dev',
-        date: '2025-06-10',
-        image: 'https://blog.langchain.com/content/images/size/w760/format/webp/2025/08/open-swe-diagram-1.png',
-        tags: ['agents', 'backend', 'orchestration']
-      },
-      {
-        "type": "video",
-        "title": "Introduction to Microsoft Copilot Studio",
-        "youtubeId": "dX9MJM5EokE",
-        "channel": "Microsoft Power Platform",
-        "date": "2024-11-15",
-        "image": "https://i.ytimg.com/vi/dX9MJM5EokE/maxresdefault.jpg",
-        "tags": ["copilot", "power platform", "microsoft 365", "ai agents", "low-code"]
-      },
-      {
-        type: 'video',
-        title: 'Introduction to ChatGPT agent',
-        youtubeId: '1jn_RpbPbEc',
-        channel: 'OpenAI',
-        date: '2025-07-17',
-        image: 'https://i.ytimg.com/vi/1jn_RpbPbEc/hqdefault.jpg',
-        tags: ['chatgpt', 'agent', 'unified model', 'openai', 'sam altman']
-      },      
-      {
-        type: 'video',
-        title: 'Andrew Ng: Building Faster with AI',
-        youtubeId: 'RNJCfif1dPY',
-        channel: 'Y Combinator',
-        date: '2025-06-17',
-        image: 'https://i.ytimg.com/vi/RNJCfif1dPY/hqdefault.jpg',
-        tags: ['andrew ng', 'ai', 'software engineering', 'startup school', 'san francisco']
-      },
-      {
-        type: 'video',
-        title: 'AI Agents, Clearly Explained',
-        youtubeId: 'FwOTs4UxQS4',
-        channel: 'AI Explained',
-        date: '2023-11-20',
-        image: 'https://i.ytimg.com/vi/FwOTs4UxQS4/hqdefault.jpg',
-        tags: ['ai agents', 'explanation', 'tutorial', 'ai explained']
-      },
-      {
-        type: 'video',
-        title: "What's Next for AI Agentic Workflows ft. Andrew Ng of AI Fund",
-        youtubeId: 'sal78ACtGTc',
-        channel: 'Sequoia Capital',
-        date: '2023-06-22',
-        image: 'https://i.ytimg.com/vi/sal78ACtGTc/hqdefault.jpg',
-        tags: ['andrew ng', 'agentic workflows', 'AI Fund', 'ai agents']
-      },
-      {
-        type: 'video',
-        title: 'Andrew Ng: Opportunities in AI – 2023',
-        youtubeId: '5p248yoa3oE',
-        channel: 'Stanford Online',
-        date: '2023-09-12',
-        image: 'https://i.ytimg.com/vi/5p248yoa3oE/hqdefault.jpg',
-        tags: ['andrew ng', 'ai opportunities', 'stanford', '2023']
-      }      
-    ];
 
     const grid = document.getElementById('grid');
     const searchInput = document.getElementById('search');
     const tabs = Array.from(document.querySelectorAll('.tab'));
     const embed = document.getElementById('embed');
+    const tagChipsContainer = document.getElementById('tag-chips');
 
-    let state = { q: '', filter: 'all' };
+    let state = { q: '', filter: 'all', selectedTags: [] };
 
     function fmtDate(iso) {
       try { return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); } catch(e) { return iso; }
+    }
+
+    function getAllTags() {
+      const allTags = new Set();
+      RESOURCES.forEach(r => {
+        if (r.tags) {
+          r.tags.forEach(tag => allTags.add(tag.toLowerCase()));
+        }
+      });
+      return Array.from(allTags).sort();
+    }
+
+    function renderTagChips() {
+      const allTags = getAllTags();
+      tagChipsContainer.innerHTML = allTags.map(tag => 
+        `<span class="tag-chip ${state.selectedTags.includes(tag) ? 'active' : ''}" 
+               onclick="toggleTag('${tag}')">${tag}</span>`
+      ).join('');
+    }
+
+    function toggleTag(tag) {
+      if (state.selectedTags.includes(tag)) {
+        state.selectedTags = state.selectedTags.filter(t => t !== tag);
+      } else {
+        state.selectedTags.push(tag);
+      }
+      renderTagChips();
+      render();
+    }
+
+    function clearTagFilter() {
+      state.selectedTags = [];
+      renderTagChips();
+      render();
     }
 
     function itemHTML(r, i) {
@@ -215,6 +167,10 @@
       const action = isVideo
         ? `<button class="btn" onclick="play('${r.youtubeId}')" aria-controls="embed">▶ Watch</button>`
         : `<a class="btn" href="${r.url}" target="_blank" rel="noopener">↗ Read</a>`;
+      
+      const cardTags = r.tags ? r.tags.map(tag => 
+        `<span class="card-tag" onclick="toggleTag('${tag.toLowerCase()}')">${tag}</span>`
+      ).join('') : '';
 
       return `
         <article class="card" data-index="${i}" data-type="${r.type}" data-tags="${(r.tags||[]).join(' ').toLowerCase()}">
@@ -223,6 +179,7 @@
             <span class="badge">${r.type === 'video' ? 'YouTube' : 'Article'}</span>
             <h3 class="title-sm">${r.title}</h3>
             <div class="meta">${meta}</div>
+            <div class="card-tags">${cardTags}</div>
             <div class="actions">${action}</div>
           </div>
         </article>
@@ -232,10 +189,18 @@
     function render() {
       const q = state.q.trim().toLowerCase();
       const filter = state.filter;
+      const selectedTags = state.selectedTags;
+      
       const rows = RESOURCES
         .filter(r => filter === 'all' || r.type === filter)
         .filter(r => !q || [r.title, r.author, r.channel, (r.tags||[]).join(' ')].filter(Boolean).join(' ').toLowerCase().includes(q))
+        .filter(r => {
+          if (selectedTags.length === 0) return true;
+          const resourceTags = (r.tags || []).map(tag => tag.toLowerCase());
+          return selectedTags.some(tag => resourceTags.includes(tag));
+        })
         .sort((a,b) => new Date(b.date || '1970-01-01') - new Date(a.date || '1970-01-01'));
+      
       grid.innerHTML = rows.map(itemHTML).join('');
       if (!rows.length) grid.innerHTML = `<p class="subtitle">No results. Try different keywords or clear filters.</p>`;
     }
@@ -256,6 +221,7 @@
     }));
 
     // initial paint
+    renderTagChips();
     render();
   </script>
 
