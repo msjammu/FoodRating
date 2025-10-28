@@ -44,7 +44,7 @@ const LEARNING_TODOS = [
     text: "Learn GitHub Pages - hosting and deployment strategies",
     icon: "🌐",
     whyLearn: "Deploy your projects for free with professional URLs, learn modern deployment workflows, and showcase your work to potential employers or collaborators worldwide.",
-    tags: ["github", "github-pages", "deployment", "hosting"],
+    tags: ["github-pages", "web-hosting", "deployment"],
     completed: false,
     createdAt: "2025-10-27T00:00:00.000Z"
   },

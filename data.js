@@ -148,5 +148,14 @@ const RESOURCES = [
     date: '2025-10-27',
     image: 'https://i.ytimg.com/vi/7HuXSoDXfTY/hqdefault.jpg',
     tags: ['google-gemini', 'ai-model', 'multimodal', 'google-ai', 'tutorial', 'features']
+  },
+  {
+    type: 'video',
+    title: 'How to Use GitHub Pages in 2025! (Beginner\'s Guide)',
+    youtubeId: '5XhxR9Vs6zc',
+    channel: 'The Common Coder',
+    date: '2024-05-27',
+    image: 'https://i.ytimg.com/vi/5XhxR9Vs6zc/hqdefault.jpg',
+    tags: ['github-pages', 'web-hosting', 'deployment', 'tutorial', 'beginner', 'github']
   }      
 ];
