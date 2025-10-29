@@ -175,5 +175,14 @@ const RESOURCES = [
     date: '2018-01-26',
     image: 'https://i.ytimg.com/vi/2moh18sh5p4/hqdefault.jpg',
     tags: ['csharp', 'async-await', 'asynchronous', 'programming', 'performance', 'dotnet']
+  },
+  {
+    type: 'video',
+    title: 'Deep .NET: Writing async/await from scratch in C# with Stephen Toub',
+    youtubeId: 'R-z2Hv-7nxk',
+    channel: 'dotnet',
+    date: '2024-03-28',
+    image: 'https://i.ytimg.com/vi/R-z2Hv-7nxk/hqdefault.jpg',
+    tags: ['csharp', 'async-await', 'dotnet', 'deep-dive', 'stephen-toub', 'advanced', 'internals']
   }      
 ];

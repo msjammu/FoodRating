@@ -74,5 +74,14 @@ const LEARNING_TODOS = [
     tags: ["csharp", "async-await", "asynchronous", "programming", "performance", "dotnet"],
     completed: false,
     createdAt: "2025-10-29T12:30:00.000Z"
+  },
+  {
+    id: 1730235600003,
+    text: "Deep dive into .NET internals - advanced async/await implementation",
+    icon: "🔬",
+    whyLearn: "Master the internal workings of async/await in .NET with insights from Stephen Toub (Microsoft architect). Understanding these internals helps optimize performance and debug complex async scenarios in production applications like FoodRating's high-traffic APIs.",
+    tags: ["csharp", "async-await", "dotnet", "deep-dive", "stephen-toub", "advanced", "internals"],
+    completed: false,
+    createdAt: "2025-10-29T16:30:00.000Z"
   }
 ];
