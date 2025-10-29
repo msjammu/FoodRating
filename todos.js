@@ -56,5 +56,14 @@ const LEARNING_TODOS = [
     tags: ["google-gemini", "ai-model", "multimodal", "google-ai"],
     completed: false,
     createdAt: "2025-10-27T00:00:00.000Z"
+  },
+  {
+    id: 1730235600001,
+    text: "Learn Azure Functions - serverless computing and debugging",
+    icon: "⚡",
+    whyLearn: "Master serverless computing with Azure Functions for scalable, cost-effective backend services. Essential for building modern cloud applications without managing infrastructure, perfect for FoodRating's API endpoints and automated workflows.",
+    tags: ["azure-functions", "serverless", "azure", "debugging", "development"],
+    completed: false,
+    createdAt: "2025-10-29T12:00:00.000Z"
   }
 ];

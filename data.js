@@ -157,5 +157,14 @@ const RESOURCES = [
     date: '2024-05-27',
     image: 'https://i.ytimg.com/vi/5XhxR9Vs6zc/hqdefault.jpg',
     tags: ['github-pages', 'web-hosting', 'deployment', 'tutorial', 'beginner', 'github']
+  },
+  {
+    type: 'video',
+    title: 'How to Debug Azure Functions in Visual Studio',
+    youtubeId: 'gCPMpZn7jBY',
+    channel: 'The Eclectic Dev',
+    date: '2025-02-27',
+    image: 'https://i.ytimg.com/vi/gCPMpZn7jBY/hqdefault.jpg',
+    tags: ['azure-functions', 'debugging', 'visual-studio', 'serverless', 'azure', 'development']
   }      
 ];
