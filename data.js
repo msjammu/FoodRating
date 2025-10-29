@@ -166,5 +166,14 @@ const RESOURCES = [
     date: '2025-02-27',
     image: 'https://i.ytimg.com/vi/gCPMpZn7jBY/hqdefault.jpg',
     tags: ['azure-functions', 'debugging', 'visual-studio', 'serverless', 'azure', 'development']
+  },
+  {
+    type: 'video',
+    title: 'C# Async / Await - Make your app more responsive and faster with asynchronous programming',
+    youtubeId: '2moh18sh5p4',
+    channel: 'IAmTimCorey',
+    date: '2018-01-26',
+    image: 'https://i.ytimg.com/vi/2moh18sh5p4/hqdefault.jpg',
+    tags: ['csharp', 'async-await', 'asynchronous', 'programming', 'performance', 'dotnet']
   }      
 ];

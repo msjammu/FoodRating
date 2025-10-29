@@ -65,5 +65,14 @@ const LEARNING_TODOS = [
     tags: ["azure-functions", "serverless", "azure", "debugging", "development"],
     completed: false,
     createdAt: "2025-10-29T12:00:00.000Z"
+  },
+  {
+    id: 1730235600002,
+    text: "Master C# Async/Await - asynchronous programming patterns",
+    icon: "🔄",
+    whyLearn: "Learn asynchronous programming in C# to build responsive, high-performance applications. Essential for handling concurrent operations, database calls, and API requests in modern web applications like the FoodRating backend services.",
+    tags: ["csharp", "async-await", "asynchronous", "programming", "performance", "dotnet"],
+    completed: false,
+    createdAt: "2025-10-29T12:30:00.000Z"
   }
 ];
